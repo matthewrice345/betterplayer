@@ -1085,12 +1085,14 @@ class BetterPlayerController {
           return;
         }
         final Offset position = renderBox.localToGlobal(Offset.zero);
-        return videoPlayerController?.enablePictureInPicture(
+        await videoPlayerController?.enablePictureInPicture(
           left: position.dx,
           top: position.dy,
           width: renderBox.size.width,
           height: renderBox.size.height,
         );
+        _postEvent(BetterPlayerEvent(BetterPlayerEventType.pipStart));
+        return;
       } else {
         BetterPlayerUtils.log("Unsupported PiP in current platform.");
       }
