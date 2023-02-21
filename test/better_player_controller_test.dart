@@ -1,7 +1,10 @@
 import 'package:better_player/better_player.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 import 'better_player_mock_controller.dart';
 import 'better_player_test_utils.dart';
+import 'mock_global_key.dart';
 import 'mock_method_channel.dart';
 import 'mock_video_player_controller.dart';
 
@@ -430,6 +433,48 @@ void main() {
         betterPlayerMockController.startNextVideoTimer();
         await Future.delayed(const Duration(milliseconds: 3000), () {});
         expect(eventCount, 3);
+      });
+
+      test("enablePictureInPicture sends event on iOS", () async {
+        debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+        final BetterPlayerController betterPlayerMockController =
+            BetterPlayerTestUtils.setupBetterPlayerMockController();
+        final mockVideoPlayerController =
+            BetterPlayerTestUtils.setupMockVideoPlayerControler();
+        mockVideoPlayerController.isPipSupported = true;
+        betterPlayerMockController.videoPlayerController =
+            mockVideoPlayerController;
+        final mockGlobalKey = MockGlobalKey();
+        int pipStartCalls = 0;
+        betterPlayerMockController.addEventsListener((event) {
+          if (event.betterPlayerEventType == BetterPlayerEventType.pipStart) {
+            pipStartCalls += 1;
+          }
+        });
+        betterPlayerMockController.enablePictureInPicture(mockGlobalKey);
+        await Future.delayed(const Duration(milliseconds: 3000), () {});
+        expect(pipStartCalls, 1);
+      });
+
+      test("enablePictureInPicture sends event on Android", () async {
+        debugDefaultTargetPlatformOverride = TargetPlatform.android;
+        final BetterPlayerController betterPlayerMockController =
+            BetterPlayerTestUtils.setupBetterPlayerMockController();
+        final mockVideoPlayerController =
+            BetterPlayerTestUtils.setupMockVideoPlayerControler();
+        mockVideoPlayerController.isPipSupported = true;
+        betterPlayerMockController.videoPlayerController =
+            mockVideoPlayerController;
+        final mockGlobalKey = MockGlobalKey();
+        int pipStartCalls = 0;
+        betterPlayerMockController.addEventsListener((event) {
+          if (event.betterPlayerEventType == BetterPlayerEventType.pipStart) {
+            pipStartCalls += 1;
+          }
+        });
+        betterPlayerMockController.enablePictureInPicture(mockGlobalKey);
+        await Future.delayed(const Duration(milliseconds: 3000), () {});
+        expect(pipStartCalls, 1);
       });
     },
   );
