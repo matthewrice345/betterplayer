@@ -9,6 +9,7 @@ class MockVideoPlayerController extends VideoPlayerController {
   bool isLoopingState = false;
   double volume = 0.0;
   double speed = 1.0;
+  bool isPipSupported = false;
 
   @override
   Future<void> play() async {
@@ -75,4 +76,9 @@ class MockVideoPlayerController extends VideoPlayerController {
     String? clearKey,
     String? videoExtension,
   }) async {}
+
+  @override
+  Future<bool?> isPictureInPictureSupported() {
+    return Future.value(isPipSupported);
+  }
 }
