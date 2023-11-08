@@ -1,3 +1,6 @@
+## 0.0.84
+* Updated flutter version
+* Upgraded pub dependencies
 ## 0.0.83
 * Updated dependencies
 * Fixed Flutter 3.0 issues
