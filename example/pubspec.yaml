@@ -1,10 +1,10 @@
 name: better_player_example
 description: Better Player example usage app.
-version: 1.0.0+1
+version: 1.0.0+2
 publish_to: none
 
 environment:
-  sdk: ">=3.0.0 <=3.13.2"
+  sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
   better_player:
@@ -13,9 +13,9 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  path_provider: ^2.1.1
+  path_provider: ^2.1.3
   visibility_detector: ^0.4.0+2
-  collection: ^1.16.0
+  collection: ^1.18.0
 
 dev_dependencies:
   flutter_test:
