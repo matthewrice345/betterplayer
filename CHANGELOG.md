@@ -1,3 +1,14 @@
+## 0.0.86
+* Added support for flutter v3.22.0
+
+## 0.0.85
+* Updated flutter version to 3.19.6
+* Upgraded pub dependencies
+
+## 0.0.84
+* Updated flutter version
+* Upgraded pub dependencies
+
 ## 0.0.83
 * Updated dependencies
 * Fixed Flutter 3.0 issues
