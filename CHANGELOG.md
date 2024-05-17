@@ -1,4 +1,4 @@
-## 0.0.85
+## 0.0.86
 * Added support for flutter v3.22.0
 
 ## 0.0.85
